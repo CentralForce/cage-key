@@ -1,0 +1,17 @@
+{
+  "name": "cage-key",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.1.1",
+    "jsonschema": "^1.2.4",
+    "nedb": "^1.8.0"
+  }
+}
