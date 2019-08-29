@@ -1,0 +1,9 @@
+{
+    "id": "hashtagSchema",
+    "type": "object",
+    "properties": {
+      "position": { "type": "integer" },
+      "length": { "type": "integer" }
+    },
+    "require": ["position", "length"]
+}

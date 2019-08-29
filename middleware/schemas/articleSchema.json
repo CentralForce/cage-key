@@ -1,0 +1,12 @@
+
+{
+    "properties": {
+        "createdAt": { "type": "date" },
+        "text": { "type": "string" },
+        "entities": {
+            "hashtags": { "type": "array", "$ref": "hashtagSchema" },
+            "urls": { "$ref": "urlsSchema" }
+        }
+    },
+    "required": ["createdAt", "text", "entities"]
+}

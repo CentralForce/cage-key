@@ -1,0 +1,10 @@
+{
+    "id": "urlsSchema",
+    "type": "object",
+    "properties": {
+      "position": { "type": "integer" },
+      "length": { "type": "integer" },
+      "href": { "type": "string" }
+    },
+    "require": ["position", "length", "href"]
+}

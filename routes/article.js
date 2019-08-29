@@ -2,32 +2,23 @@ const express = require("express");
 const router = express.Router();
 const validator = require("express-validator");
 const database = require("../drivers/database");
+const articleValidator = require("../middleware/articleValidator")
 
 // just for debugging
-router.get("/all", async (req, res) => {});
+router.get("/all", (req, res) => {});
 
 router.get("/find", (req, res) => {});
 
 router.get("/range", (req, res) => {});
 
-router.post(
-  "/publish",
-  [
-    validator.body("text").isString(),
-    validator.body("entities.hashtags").isArray(),
-    validator.body("entities.urls").isArray(),
-    validator.body("media").isArray()
-  ],
-  async (req, res) => {
-    const errors = validator.validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+router.post("/publish", articleValidator.validate(), (req, res) => {
+    const err = validator.validationResult(req);
+    if (!err.isEmpty()) {
+      return res.status(422).json({ errors: err.array() });
     }
-    try {
-      res.send(await database.publishArticle(req.body));
-    } catch {
-      res.sendStatus(422);
-    }
+    database.publishArticle(req.body)
+      .then(article => res.send(article))
+      .catch(err => res.sendStatus(422))
   }
 );
 
