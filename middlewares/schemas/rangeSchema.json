@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "firstDate": {
+      "type": "date"
+    },
+    "lastDate": {
+      "type": "date"
+    }
+  },
+  "required": [
+    "firstDate",
+    "lastDate"
+  ]
+}

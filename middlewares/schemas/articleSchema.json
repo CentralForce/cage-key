@@ -1,0 +1,39 @@
+{
+    "properties": {
+        "text": {
+            "type": "string",
+            "minLength": 1
+        },
+        "entities": {
+            "hashtags": {
+                "type": "array",
+                "items": {
+                    "$ref": "hashtagSchema"
+                }
+            },
+            "urls": {
+                "type": "array",
+                "items": {
+                    "$ref": "urlsSchema"
+                }
+            },
+            "required": [
+                "hashtags",
+                "urls"
+            ]
+        },
+        "media": {
+            "type": "array"
+        }
+    },
+    "required": [
+        "text",
+        "entities",
+        "media"
+    ],
+    "not": {
+        "required": [
+            "createdAt"
+        ]
+    }
+}
