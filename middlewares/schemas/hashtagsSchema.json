@@ -3,7 +3,8 @@
     "type": "object",
     "properties": {
       "position": { "type": "integer" },
-      "length": { "type": "integer" }
+      "length": { "type": "integer" },
+      "href": { "type": "string" }
     },
-    "require": ["position", "length"]
+    "require": ["position", "length", "href"]
 }

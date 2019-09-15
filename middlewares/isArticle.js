@@ -9,10 +9,14 @@ module.exports = function isArticle(req, res, next) {
         ]
         schemas.forEach(schema => validator.addSchema(schema, schema.id));
         const result = validator.validate(req.body, require("./schemas/articleSchema.json"))
-        console.log(result.errors)
         if (result != null && result.errors != null && result.errors.length <= 0) {
-            req.body.createdAt = new Date()
-            next()
+            //additional verification
+            if (req.body.text.trim().length > 0) {
+                req.body.createdAt = new Date().getTime()
+                next()
+            } else {
+                res.sendStatus(422)
+            }
         } else {
             res.sendStatus(422)
         }
