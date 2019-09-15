@@ -1,33 +1,37 @@
-const express = require("express");
+/* eslint-disable new-cap */
+
+const express = require('express');
 const router = express.Router();
-const database = require("../drivers/database");
-const { body } = require("express-validator")
+const dbArticle = require('../drivers/dbArticle');
 
-// validation
-const isArticle = require("../middlewares/isArticle");
-const isRange = require("../middlewares/isRange")
-
-// just for debugging
-router.get("/all", (req, res) => {
-  database.getArticles()
-    .then(result => res.send(result))
-    .catch(err => res.sendStatus(422))
+router.get('/all', (req, res) => {
+  dbArticle.all()
+      .then((result) => res.send(result))
+      .catch(() => res.sendStatus(422));
 });
 
-router.get("/find", isRange, (req, res) => { });
-
-router.get("/range", (req, res) => {
-  database.getArticlesRange(req.body.firstDate, req.body.lastDate)
-    .then(result => res.send(result))
-    .catch(err => res.sendStatus(422))
+router.get('/find', (req, res) => {
+  dbArticle.find(req.body.text)
+      .then((result) => res.send(result))
+      .catch(() => res.sendStatus(422));
 });
 
-router.post("/publish", isArticle, (req, res) => {
-  database.publishArticle(req.body)
-    .then(result => res.send(result))
-    .catch(err => res.sendStatus(422))
+router.get('/range', (req, res) => {
+  dbArticle.range(parseInt(req.body.firstDate), parseInt(req.body.lastDate))
+      .then((result) => res.send(result))
+      .catch(() => res.sendStatus(422));
 });
 
-router.post("/edit", (req, res) => { });
+router.post('/publish', (req, res) => {
+  dbArticle.publish(req.body)
+      .then((result) => res.send(result))
+      .catch(() => res.sendStatus(422));
+});
+
+router.post('/edit', (req, res) => {
+  dbArticle.edit(req.body._id, req.body.data)
+      .then((result) => res.send(result))
+      .catch(() => res.sendStatus(422));
+});
 
 module.exports = router;
