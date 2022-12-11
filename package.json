@@ -10,7 +10,7 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-validator": "^6.1.1",
     "jsonschema": "^1.2.4",
     "nedb": "^1.8.0"
